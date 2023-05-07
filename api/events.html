@@ -1,0 +1,323 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Events - Documentation | Helix</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="The documentation of the Helix Project">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Home</a></li><li class="chapter-item expanded "><a href="../getting-started/index.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/disclaimer.html"><strong aria-hidden="true">1.1.</strong> Disclaimer</a></li><li class="chapter-item expanded "><a href="../getting-started/install.html"><strong aria-hidden="true">1.2.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../getting-started/usage.html"><strong aria-hidden="true">1.3.</strong> Usage</a></li><li class="chapter-item expanded "><a href="../getting-started/configuration.html"><strong aria-hidden="true">1.4.</strong> Configuration</a></li></ol></li><li class="chapter-item expanded "><a href="../general/index.html"><strong aria-hidden="true">2.</strong> General</a></li><li class="chapter-item expanded "><a href="../api/index.html"><strong aria-hidden="true">3.</strong> API</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../api/schema.html"><strong aria-hidden="true">3.1.</strong> Schema</a></li><li class="chapter-item expanded "><a href="../api/accounting.html"><strong aria-hidden="true">3.2.</strong> Accounting</a></li><li class="chapter-item expanded "><a href="../api/appointments.html"><strong aria-hidden="true">3.3.</strong> Appointments</a></li><li class="chapter-item expanded "><a href="../api/patients.html"><strong aria-hidden="true">3.4.</strong> Patients</a></li><li class="chapter-item expanded "><a href="../api/events.html" class="active"><strong aria-hidden="true">3.5.</strong> Events</a></li><li class="chapter-item expanded "><a href="../api/auth.html"><strong aria-hidden="true">3.6.</strong> Auth</a></li><li class="chapter-item expanded "><a href="../api/users.html"><strong aria-hidden="true">3.7.</strong> Users</a></li></ol></li><li class="chapter-item expanded "><a href="../lx-tool/index.html"><strong aria-hidden="true">4.</strong> Utility lx</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../lx-tool/install.html"><strong aria-hidden="true">4.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../lx-tool/usage.html"><strong aria-hidden="true">4.2.</strong> Usage</a></li></ol></li><li class="chapter-item expanded "><a href="../index.html">Home</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Documentation | Helix</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/helix-medical" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="events"><a class="header" href="#events">Events</a></h1>
+<h2 id="schema"><a class="header" href="#schema">Schema</a></h2>
+<pre class="mermaid">flowchart TB
+ EVNT{{/api/events}} -- Read All --&gt; MRAEVT{GET} ---&gt; EVNT_READALL{{/}}
+ EVNT -- Read One --&gt; MROEVT{GET} ---&gt; EVNT_READONE{{/:id}}
+ EVNT -- Read by Calendar --&gt; MRCAL{GET} ---&gt; EVNT_READCAL{{/calendar/:id}}
+ EVNT -- Create --&gt; MCEVT{PST} --&gt; MWCEVT[[Create]] --&gt; EVNT_CREATE{{/}}
+ EVNT -- Upate Date --&gt; MUDEVT{PUT} --&gt; MWUDEVT[[Up Date]] --&gt; EVNT_UPDATE{{/:id/date}}
+ EVNT -- Update Calendar --&gt; MUCEVT{PUT} --&gt; MWUCEVT[[Up Cal]] --&gt; EVNT_UPCAL{{/:id/calendar}}
+ EVNT -- Delete --&gt; MDEVT{DEL} ---&gt; EVNT_DEL{{/:id}}
+
+ click MWCEVT &quot;#create&quot;
+ click MWUDEVT &quot;#update-date&quot;
+ click MWUCEVT &quot;#update-calendar&quot;
+ click EVNT_READALL &quot;#read-all&quot;
+ click EVNT_READONE &quot;#read-one&quot;
+ click EVNT_CREATE &quot;#create-endpoint&quot;
+ click EVNT_UPDATE &quot;#update-date-endpoint&quot;
+ click EVNT_UPCAL &quot;#update-calendar-endpoint&quot;
+ click EVNT_DEL &quot;#delete&quot;
+</pre>
+<h2 id="middlewares"><a class="header" href="#middlewares">Middlewares</a></h2>
+<p>!!! info &quot;Middlewares&quot;
+The middlewares are used to check if the request body is valid.
+Return a <code>406 NOT_ACCEPTABLE</code> error if the request body is invalid.
+Else, the request is passed to the next middleware.</p>
+<h3 id="create"><a class="header" href="#create">Create</a></h3>
+<p>Check if the request body is valid.</p>
+<pre><code class="language-json title=&quot;Request Body&quot;">{
+  &quot;start&quot;: &quot;YYYY-MM-DD HH:mm&quot;,
+  &quot;end&quot;: &quot;YYYY-MM-DD HH:mm&quot;,
+  &quot;calendar&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+  &quot;appointment&quot;: &quot;[0-9a-fA-F]{8}&quot;, // Not required
+  &quot;title&quot;: &quot;string&quot;,
+}
+</code></pre>
+<h3 id="update-date"><a class="header" href="#update-date">Update Date</a></h3>
+<p>Check if the request body is valid.</p>
+<pre><code class="language-json title=&quot;Request Body&quot;">{
+  &quot;start&quot;: &quot;YYYY-MM-DD HH:mm&quot;,
+  &quot;end&quot;: &quot;YYYY-MM-DD HH:mm&quot;,
+}
+</code></pre>
+<h3 id="update-calendar"><a class="header" href="#update-calendar">Update Calendar</a></h3>
+<p>Check if the request body is valid.</p>
+<pre><code class="language-json title=&quot;Request Body&quot;">{
+  &quot;calendar&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+}
+</code></pre>
+<h2 id="endpoints"><a class="header" href="#endpoints">Endpoints</a></h2>
+<h3 id="read-all"><a class="header" href="#read-all">Read All</a></h3>
+<p>Return all events.</p>
+<pre><code class="language-json title=&quot;Response Body&quot;">[
+  {
+    &quot;id&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+    &quot;start&quot;: &quot;YYYY-MM-DD HH:mm&quot;,
+    &quot;end&quot;: &quot;YYYY-MM-DD HH:mm&quot;,
+    &quot;calendar&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+    &quot;appointment&quot;: &quot;[0-9a-fA-F]{8} || ''&quot;,
+    &quot;title&quot;: &quot;string&quot;,
+  },
+  ...
+]
+</code></pre>
+<h3 id="read-one"><a class="header" href="#read-one">Read One</a></h3>
+<p>Return one event.</p>
+<pre><code class="language-json title=&quot;Response Body&quot;">{
+  &quot;id&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+  &quot;start&quot;: &quot;YYYY-MM-DD HH:mm&quot;,
+  &quot;end&quot;: &quot;YYYY-MM-DD HH:mm&quot;,
+  &quot;calendar&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+  &quot;appointment&quot;: &quot;[0-9a-fA-F]{8} || ''&quot;,
+  &quot;title&quot;: &quot;string&quot;,
+}
+</code></pre>
+<h3 id="create-endpoint"><a class="header" href="#create-endpoint">Create Endpoint</a></h3>
+<p>Create an event.</p>
+<pre><code class="language-json title=&quot;Request Body&quot;">{
+  &quot;start&quot;: &quot;YYYY-MM-DD HH:mm&quot;,
+  &quot;end&quot;: &quot;YYYY-MM-DD HH:mm&quot;,
+  &quot;calendar&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+  &quot;appointment&quot;: &quot;[0-9a-fA-F]{8}&quot;, // Not required
+  &quot;title&quot;: &quot;string&quot;,
+}
+</code></pre>
+<pre><code class="language-json title=&quot;Response Body&quot;">{
+  &quot;id&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+  &quot;message&quot;: &quot;Event ${id} created&quot;
+}
+</code></pre>
+<h3 id="update-date-endpoint"><a class="header" href="#update-date-endpoint">Update Date Endpoint</a></h3>
+<p>Update the date of an event.</p>
+<pre><code class="language-json title=&quot;Request Body&quot;">{
+  &quot;start&quot;: &quot;YYYY-MM-DD HH:mm&quot;,
+  &quot;end&quot;: &quot;YYYY-MM-DD HH:mm&quot;,
+}
+</code></pre>
+<pre><code class="language-json title=&quot;Response Body&quot;">{
+  &quot;id&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+  &quot;message&quot;: &quot;Event ${id} updated&quot;
+}
+</code></pre>
+<h3 id="update-calendar-endpoint"><a class="header" href="#update-calendar-endpoint">Update Calendar Endpoint</a></h3>
+<p>Update the calendar of an event.</p>
+<pre><code class="language-json title=&quot;Request Body&quot;">{
+  &quot;calendar&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+}
+</code></pre>
+<pre><code class="language-json title=&quot;Response Body&quot;">{
+  &quot;id&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+  &quot;message&quot;: &quot;Event ${id} updated&quot;
+}
+</code></pre>
+<h3 id="delete"><a class="header" href="#delete">Delete</a></h3>
+<p>Delete an event.</p>
+<pre><code class="language-json title=&quot;Response Body&quot;">{
+  &quot;id&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+  &quot;message&quot;: &quot;Event ${id} deleted&quot;
+}
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../api/patients.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../api/auth.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../api/patients.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../api/auth.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid.min.js"></script>
+        <script src="../mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>

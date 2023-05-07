@@ -1,0 +1,615 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Documentation | Helix</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="The documentation of the Helix Project">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Home</a></li><li class="chapter-item expanded "><a href="getting-started/index.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting-started/disclaimer.html"><strong aria-hidden="true">1.1.</strong> Disclaimer</a></li><li class="chapter-item expanded "><a href="getting-started/install.html"><strong aria-hidden="true">1.2.</strong> Installation</a></li><li class="chapter-item expanded "><a href="getting-started/usage.html"><strong aria-hidden="true">1.3.</strong> Usage</a></li><li class="chapter-item expanded "><a href="getting-started/configuration.html"><strong aria-hidden="true">1.4.</strong> Configuration</a></li></ol></li><li class="chapter-item expanded "><a href="general/index.html"><strong aria-hidden="true">2.</strong> General</a></li><li class="chapter-item expanded "><a href="api/index.html"><strong aria-hidden="true">3.</strong> API</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="api/schema.html"><strong aria-hidden="true">3.1.</strong> Schema</a></li><li class="chapter-item expanded "><a href="api/accounting.html"><strong aria-hidden="true">3.2.</strong> Accounting</a></li><li class="chapter-item expanded "><a href="api/appointments.html"><strong aria-hidden="true">3.3.</strong> Appointments</a></li><li class="chapter-item expanded "><a href="api/patients.html"><strong aria-hidden="true">3.4.</strong> Patients</a></li><li class="chapter-item expanded "><a href="api/events.html"><strong aria-hidden="true">3.5.</strong> Events</a></li><li class="chapter-item expanded "><a href="api/auth.html"><strong aria-hidden="true">3.6.</strong> Auth</a></li><li class="chapter-item expanded "><a href="api/users.html"><strong aria-hidden="true">3.7.</strong> Users</a></li></ol></li><li class="chapter-item expanded "><a href="lx-tool/index.html"><strong aria-hidden="true">4.</strong> Utility lx</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="lx-tool/install.html"><strong aria-hidden="true">4.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="lx-tool/usage.html"><strong aria-hidden="true">4.2.</strong> Usage</a></li></ol></li><li class="chapter-item expanded "><a href="index.html">Home</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Documentation | Helix</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/helix-medical" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="welcome-to-helix-documentation"><a class="header" href="#welcome-to-helix-documentation">Welcome to Helix Documentation</a></h1>
+<h2 id="what-is-helix"><a class="header" href="#what-is-helix">What is Helix?</a></h2>
+<p>Helix est un système de gestion de patients, à destination des cabinets médicaux ou paramédicaux.
+Dans Helix, vous pouvez gérer vos patients, leurs rendez-vous, leurs factures et votre comptabilité, leurs dossiers médicaux, etc.
+Aujourd'hui, Helix est tourné principalement vers les ostéopathes, mais il est possible de
+l'adapter à d'autres professions. Helix est un logiciel libre, développé par
+<a href="https://github.com/Xavier2p">Xavier2p</a>, et est gratuit et <em>open-source</em>. Il est disponible
+sur <a href="https://github.com/helix-medical/">GitHub</a> et toute contribution est bienvenue.</p>
+<p>Dans cette documentation, vous trouverez des informations sur l'installation et la
+configuration de Helix, ainsi que sur son utilisation.
+Il y a également une documentation plus technique, pour contribuer au développement de Helix.</p>
+<h2 id="project-layout"><a class="header" href="#project-layout">Project layout</a></h2>
+<pre><code class="language-text">.
+├── client      # Client-side code
+├── server      # Server-side code
+├── docs        # Documentation
+├── releases    # Releases
+├── lx-tool     # Utility
+└── website     # Website
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started"><a class="header" href="#getting-started">Getting Started</a></h1>
+<h2 id="disclaimer"><a class="header" href="#disclaimer"><a href="getting-started/disclaimer.html">Disclaimer</a></a></h2>
+<h2 id="installation"><a class="header" href="#installation"><a href="getting-started/install.html">Installation</a></a></h2>
+<h2 id="configuration"><a class="header" href="#configuration"><a href="getting-started/configuration.html">Configuration</a></a></h2>
+<h2 id="usage"><a class="header" href="#usage"><a href="getting-started/usage.html">Usage</a></a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="disclaimer-et-précautions-dusage"><a class="header" href="#disclaimer-et-précautions-dusage">Disclaimer et précautions d'usage</a></h1>
+<p>!!! tip &quot;Contenu de cette page&quot;</p>
+<pre><code>Quelques choses à avoir en tête avant d'utiliser Helix.
+</code></pre>
+<h2 id="développement-en-cours"><a class="header" href="#développement-en-cours">Développement en cours</a></h2>
+<p>Helix est encore en phase de développement. Il est donc possible que vous rencontriez des bugs, ou que certaines fonctionnalités ne soient pas encore disponibles. N'hésitez pas à nous contacter si vous avez des questions, ou si vous rencontrez des problèmes.</p>
+<h2 id="interface-et-expérience-utilisateur"><a class="header" href="#interface-et-expérience-utilisateur">Interface et Expérience utilisateur</a></h2>
+<p>Helix est un logiciel développé par un passionné, ni designer ni développeur professionnel. Il est donc possible que certaines parties de l'interface ne soient pas très jolies. N'hésitez pas à nous contacter si vous avez des suggestions d'amélioration.</p>
+<h2 id="confidentialité"><a class="header" href="#confidentialité">Confidentialité</a></h2>
+<p>Helix est un logiciel libre, et il est possible de consulter le code source. Il est donc possible de voir ce que fait Helix, et de le modifier. D'autre part, Helix est hébergé chez vous, et n'a pas accès à vos données. Enfin, Helix respecte les normes de confidentialité européennes, comme le RGPD.</p>
+<h2 id="installation-1"><a class="header" href="#installation-1">Installation</a></h2>
+<p>Helix ne s'installe pas aussi facilement qu'une application de téléphone. Il faut prévoir un peu de temps pour l'installer, et il faut un peu de connaissances techniques. Si vous n'êtes pas à l'aise avec la ligne de commande, ou avec Docker, il va vous falloir l'aide de quelqu'un qui s'y connaît.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="installation-2"><a class="header" href="#installation-2">Installation</a></h1>
+<p>!!! warning &quot;A prendre en compte avant l'installation&quot;</p>
+<pre><code>Merci de vous assurer que vous avez bien lu les [précautions d'usage](disclaimer.md) avant d'installer Helix.
+</code></pre>
+<h2 id="requirements"><a class="header" href="#requirements">Requirements</a></h2>
+<p>La philosophie de Helix est d'être hébergé chez soi, en <em>self-hosting</em>. C'est un gage de confidentialité, non négligeable dans le milieu médical, et cela permet à Helix de rester gratuit, et sans publicités.</p>
+<p>Pour cela, il faut donc prévoir un peu de matériel et d'espace disque. Voici les pré-requis:</p>
+<ul>
+<li>Un serveur. Cela peut être un simple ordinateur, ou un serveur dédié. Nous recommandons d'utiliser un serveur NAS, qui offre une certaine simplicité et une fiabilité important. Il faut au minimum:
+<ul>
+<li>4 Go de RAM</li>
+<li>32 Go d'espace disque (pour uen installation pérenne)</li>
+<li>Un processeur récent (Intel Core i3 ou supérieur, ou équivalent)</li>
+</ul>
+</li>
+<li><a href="https://docs.docker.com/get-docker/">Docker</a> et <a href="https://docs.docker.com/compose/compose-file/">Docker Compose</a></li>
+</ul>
+<h2 id="installation-3"><a class="header" href="#installation-3">Installation</a></h2>
+<p>Commencez par cloner le dépôt, et lancer les conteneurs Docker:</p>
+<pre><code class="language-bash">git clone https://github.com/helix-medical/releases &amp;&amp; cd releases
+</code></pre>
+<p>Ensuite, lancez l'utilitaire d'installation. L'utilitaire va vous demander quelques informations, et vous guider dans l'installation.</p>
+<pre><code class="language-bash">lx config
+</code></pre>
+<p>Enfin, déployez Helix:</p>
+<pre><code class="language-bash">lx deploy
+</code></pre>
+<p>Et c'est tout ! Helix est maintenant installé et fonctionnel. Vous pouvez vous connecter à l'adresse <code>http://localhost:3000</code> (ou <code>http://&lt;votre-ip&gt;:3000</code> si vous utilisez un serveur distant).</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="usage-1"><a class="header" href="#usage-1">Usage</a></h1>
+<p>!!! fail &quot;Not implemented yet&quot;</p>
+<pre><code>Not Found: /docs/docs/getting-started/usage.md
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="configuration-1"><a class="header" href="#configuration-1">Configuration</a></h1>
+<p>!!! fail &quot;Not implemented yet&quot;</p>
+<pre><code>Not Found: /docs/docs/getting-started/configuration.md
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="general-principles"><a class="header" href="#general-principles">General Principles</a></h1>
+<h2 id="architecture"><a class="header" href="#architecture">Architecture</a></h2>
+<pre class="mermaid">sequenceDiagram
+    participant C as Client
+    participant S as Server
+    participant DB as Database
+    C--&gt;&gt;S: Request
+    S-&gt;&gt;DB: Query
+    activate DB
+    DB-&gt;&gt;S: Response
+    deactivate DB
+    S--&gt;&gt;C: Response
+    Note over S,DB: SQL
+    Note over C,S: HTTP, JSON format
+</pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="api-documentation"><a class="header" href="#api-documentation">API Documentation</a></h1>
+<h2 id="schema"><a class="header" href="#schema"><a href="api/schema.html">Schema</a></a></h2>
+<h2 id="events"><a class="header" href="#events"><a href="api/events.html">Events</a></a></h2>
+<h2 id="patients"><a class="header" href="#patients"><a href="api/patients.html">Patients</a></a></h2>
+<h2 id="appointments"><a class="header" href="#appointments"><a href="api/appointments.html">Appointments</a></a></h2>
+<h2 id="accounting"><a class="header" href="#accounting"><a href="api/accounting.html">Accounting</a></a></h2>
+<h2 id="users"><a class="header" href="#users"><a href="api/users.html">Users</a></a></h2>
+<h2 id="auth"><a class="header" href="#auth"><a href="api/auth.html">Auth</a></a></h2>
+<h2 id="404"><a class="header" href="#404"><a href="api/404.html">404</a></a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="schema-1"><a class="header" href="#schema-1">Schema</a></h1>
+<pre class="mermaid">flowchart TB
+subgraph Routers
+ RE[/Events\]
+ RAP[/Appointments\]
+ RAC[/Accounting\]
+ RP[/Patients\]
+ RU[/Users\]
+ RA[/Auth\]
+end
+
+subgraph Middlewares
+ MEJ(ExpressJSON) --&gt;MC(Credentials)
+ MC --&gt; MCORS(CORS)
+ MCORS --&gt; MCP(CookiesParser)
+ MCP --&gt; MLOG(LoggerCheckpoint)
+end
+
+subgraph Databases
+ EVNT_DB[(Events)]
+ APPS_DB[(Appointments)]
+ ACCS_DB[(Accounting)]
+ PTNS_DB[(Patients)]
+ USRS_DB[(Users)]
+end
+
+MLOG --&gt; MLC{{API Gateway}}
+MLC --&gt; RE
+MLC --&gt; RAP
+MLC --&gt; RAC
+MLC --&gt; RP
+MLC --&gt; RU
+MLC --&gt; RA
+MLC --&gt; R404{{Error Handler}}
+RP &lt;---&gt; PTNS_DB
+RAP &lt;---&gt; APPS_DB
+RE &lt;---&gt; EVNT_DB
+RAC &lt;---&gt; ACCS_DB
+RU &lt;---&gt; USRS_DB
+RA &lt;---&gt; USRS_DB
+
+click RE &quot;/api/events.html&quot;
+click RP &quot;/api/patients.html&quot;
+click RAP &quot;/api/appointments.html&quot;
+click RAC &quot;/api/accounting.html&quot;
+click RU &quot;/api/users.html&quot;
+click RA &quot;/api/auth.html&quot;
+</pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="accounting-1"><a class="header" href="#accounting-1">Accounting</a></h1>
+<h2 id="schema-2"><a class="header" href="#schema-2">Schema</a></h2>
+<pre class="mermaid">flowchart TB
+ ACCT{{/api/accounting}} -- Read All --&gt; MRAACCT{GET} ---&gt; ACCT_READALL{{/:start/:end}}
+ ACCT -- Get Sum --&gt; MROACCT{GET} ---&gt; ACCT_SUM{{/sum/:start/:end}}
+ ACCT -- Create --&gt; MCACCT{PST} --&gt; MWCACCT[[Create]] --&gt; ACCT_CREATE{{/}}
+</pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="appointments-1"><a class="header" href="#appointments-1">Appointments</a></h1>
+<h2 id="schema-3"><a class="header" href="#schema-3">Schema</a></h2>
+<pre class="mermaid">flowchart TB
+ APPS{{/api/appointments}} -- Read All --&gt; MRAAPPS{GET} ---&gt; APPS_READALL{{/:period}}
+ APPS -- Read One --&gt; MROAPPS{GET} ---&gt; APPS_READONE{{/:id/:view}}
+ APPS -- Create --&gt; MCAPPS{PST} --&gt; MWCAPPS[[Create]] --&gt; APPS_CREATE{{/new}}
+ APPS -- Update Content --&gt; MUCAPPS{PUT} --&gt; MWUCAPPS[[Update]] --&gt; APP_CONTENT{{/:id/content}}
+</pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="patients-1"><a class="header" href="#patients-1">Patients</a></h1>
+<h2 id="schema-4"><a class="header" href="#schema-4">Schema</a></h2>
+<pre class="mermaid">flowchart TB
+ PTNS{{/api/patients}} -- Read All --&gt; MRAPTNS{GET} ---&gt; PTNS_READALL{{/}}
+ PTNS -- Read One --&gt; MROPTNS{GET} ---&gt; PTNS_READONE{{/:id}}
+ PTNS -- Appointment --&gt; MAPTNS{GET} ---&gt; PTNS_APP{{/appointment}}
+ PTNS -- Create --&gt; MCPTNS{PST} --&gt; MWCPTNS[[Create]] --&gt; PTNS_CREATE{{/add}}
+ PTNS -- Update --&gt; MUPTNS{PUT} --&gt; MWUPTNS[[Update]] --&gt; PTN_UPDATE{{/:id}}
+ PTNS -- Delete --&gt; MDPTNS{DEL} ---&gt; PTNS_DEL{{/:id}}
+
+click PTNS_READALL &quot;#read-all&quot;
+click PTNS_READONE &quot;#read-one&quot;
+click PTNS_APP &quot;#appointment&quot;
+click PTNS_CREATE &quot;#create&quot;
+click PTN_UPDATE &quot;#update&quot;
+click PTNS_DEL &quot;#delete&quot;
+</pre>
+<h2 id="middleware"><a class="header" href="#middleware">Middleware</a></h2>
+<p>!!! info &quot;Middlewares&quot;
+The middlewares are used to check if the request body is valid.
+Return a <code>406 NOT_ACCEPTABLE</code> error if the request body is invalid.
+Else, the request is passed to the next middleware.</p>
+<h3 id="create"><a class="header" href="#create">Create</a></h3>
+<p>Check if the request body is valid.</p>
+<pre><code class="language-json title=&quot;Request Body&quot;">{
+    &quot;name&quot;: &quot;string&quot;,
+    &quot;lastName&quot;: &quot;string&quot;,
+    &quot;birthDate&quot;: &quot;YYYY-MM-DD&quot;,
+    &quot;sex&quot;: &quot;string&quot;,
+    &quot;email&quot;: &quot;string&quot;,
+    &quot;phone&quot;: &quot;string&quot;,
+    &quot;address&quot;: &quot;string&quot;,
+    &quot;city&quot;: &quot;string&quot;,
+    &quot;job&quot;: &quot;string&quot;,
+    &quot;doctor&quot;: &quot;string&quot;,
+    &quot;passif&quot;: &quot;string&quot;,
+}
+</code></pre>
+<h3 id="update"><a class="header" href="#update">Update</a></h3>
+<p>Check if the request body is valid.</p>
+<pre><code class="language-json title=&quot;Request Body&quot;">{
+    &quot;name&quot;: &quot;string&quot;,
+    &quot;lastName&quot;: &quot;string&quot;,
+    &quot;birthDate&quot;: &quot;YYYY-MM-DD&quot;,
+    &quot;sex&quot;: &quot;string&quot;,
+    &quot;email&quot;: &quot;string&quot;,
+    &quot;phone&quot;: &quot;string&quot;,
+    &quot;address&quot;: &quot;string&quot;,
+    &quot;city&quot;: &quot;string&quot;,
+    &quot;job&quot;: &quot;string&quot;,
+    &quot;doctor&quot;: &quot;string&quot;,
+    &quot;passif&quot;: &quot;string&quot;,
+}
+</code></pre>
+<h2 id="endpoints"><a class="header" href="#endpoints">Endpoints</a></h2>
+<h3 id="read-all"><a class="header" href="#read-all">Read All</a></h3>
+<p>Return all patients</p>
+<pre><code class="language-json title=&quot;Response Body&quot;">[
+    {
+    &quot;id&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+    &quot;name&quot;: &quot;string&quot;,
+    &quot;lastName&quot;: &quot;string&quot;,
+    &quot;birthDate&quot;: &quot;YYYY-MM-DD&quot;,
+    &quot;sex&quot;: &quot;string&quot;,
+    &quot;email&quot;: &quot;string&quot;,
+    &quot;phone&quot;: &quot;string&quot;,
+    &quot;address&quot;: &quot;string&quot;,
+    &quot;city&quot;: &quot;string&quot;,
+    &quot;job&quot;: &quot;string&quot;,
+    &quot;doctor&quot;: &quot;string&quot;,
+    &quot;passif&quot;: &quot;string&quot;,
+    },
+    ...
+]
+</code></pre>
+<h3 id="read-one"><a class="header" href="#read-one">Read One</a></h3>
+<p>Return one patient.</p>
+<pre><code class="language-json title=&quot;Response Body&quot;">{
+    &quot;id&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+    &quot;name&quot;: &quot;string&quot;,
+    &quot;lastName&quot;: &quot;string&quot;,
+    &quot;birthDate&quot;: &quot;YYYY-MM-DD&quot;,
+    &quot;sex&quot;: &quot;string&quot;,
+    &quot;email&quot;: &quot;string&quot;,
+    &quot;phone&quot;: &quot;string&quot;,
+    &quot;address&quot;: &quot;string&quot;,
+    &quot;city&quot;: &quot;string&quot;,
+    &quot;job&quot;: &quot;string&quot;,
+    &quot;doctor&quot;: &quot;string&quot;,
+    &quot;passif&quot;: &quot;string&quot;,
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="events-1"><a class="header" href="#events-1">Events</a></h1>
+<h2 id="schema-5"><a class="header" href="#schema-5">Schema</a></h2>
+<pre class="mermaid">flowchart TB
+ EVNT{{/api/events}} -- Read All --&gt; MRAEVT{GET} ---&gt; EVNT_READALL{{/}}
+ EVNT -- Read One --&gt; MROEVT{GET} ---&gt; EVNT_READONE{{/:id}}
+ EVNT -- Read by Calendar --&gt; MRCAL{GET} ---&gt; EVNT_READCAL{{/calendar/:id}}
+ EVNT -- Create --&gt; MCEVT{PST} --&gt; MWCEVT[[Create]] --&gt; EVNT_CREATE{{/}}
+ EVNT -- Upate Date --&gt; MUDEVT{PUT} --&gt; MWUDEVT[[Up Date]] --&gt; EVNT_UPDATE{{/:id/date}}
+ EVNT -- Update Calendar --&gt; MUCEVT{PUT} --&gt; MWUCEVT[[Up Cal]] --&gt; EVNT_UPCAL{{/:id/calendar}}
+ EVNT -- Delete --&gt; MDEVT{DEL} ---&gt; EVNT_DEL{{/:id}}
+
+ click MWCEVT &quot;#create&quot;
+ click MWUDEVT &quot;#update-date&quot;
+ click MWUCEVT &quot;#update-calendar&quot;
+ click EVNT_READALL &quot;#read-all&quot;
+ click EVNT_READONE &quot;#read-one&quot;
+ click EVNT_CREATE &quot;#create-endpoint&quot;
+ click EVNT_UPDATE &quot;#update-date-endpoint&quot;
+ click EVNT_UPCAL &quot;#update-calendar-endpoint&quot;
+ click EVNT_DEL &quot;#delete&quot;
+</pre>
+<h2 id="middlewares"><a class="header" href="#middlewares">Middlewares</a></h2>
+<p>!!! info &quot;Middlewares&quot;
+The middlewares are used to check if the request body is valid.
+Return a <code>406 NOT_ACCEPTABLE</code> error if the request body is invalid.
+Else, the request is passed to the next middleware.</p>
+<h3 id="create-1"><a class="header" href="#create-1">Create</a></h3>
+<p>Check if the request body is valid.</p>
+<pre><code class="language-json title=&quot;Request Body&quot;">{
+  &quot;start&quot;: &quot;YYYY-MM-DD HH:mm&quot;,
+  &quot;end&quot;: &quot;YYYY-MM-DD HH:mm&quot;,
+  &quot;calendar&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+  &quot;appointment&quot;: &quot;[0-9a-fA-F]{8}&quot;, // Not required
+  &quot;title&quot;: &quot;string&quot;,
+}
+</code></pre>
+<h3 id="update-date"><a class="header" href="#update-date">Update Date</a></h3>
+<p>Check if the request body is valid.</p>
+<pre><code class="language-json title=&quot;Request Body&quot;">{
+  &quot;start&quot;: &quot;YYYY-MM-DD HH:mm&quot;,
+  &quot;end&quot;: &quot;YYYY-MM-DD HH:mm&quot;,
+}
+</code></pre>
+<h3 id="update-calendar"><a class="header" href="#update-calendar">Update Calendar</a></h3>
+<p>Check if the request body is valid.</p>
+<pre><code class="language-json title=&quot;Request Body&quot;">{
+  &quot;calendar&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+}
+</code></pre>
+<h2 id="endpoints-1"><a class="header" href="#endpoints-1">Endpoints</a></h2>
+<h3 id="read-all-1"><a class="header" href="#read-all-1">Read All</a></h3>
+<p>Return all events.</p>
+<pre><code class="language-json title=&quot;Response Body&quot;">[
+  {
+    &quot;id&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+    &quot;start&quot;: &quot;YYYY-MM-DD HH:mm&quot;,
+    &quot;end&quot;: &quot;YYYY-MM-DD HH:mm&quot;,
+    &quot;calendar&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+    &quot;appointment&quot;: &quot;[0-9a-fA-F]{8} || ''&quot;,
+    &quot;title&quot;: &quot;string&quot;,
+  },
+  ...
+]
+</code></pre>
+<h3 id="read-one-1"><a class="header" href="#read-one-1">Read One</a></h3>
+<p>Return one event.</p>
+<pre><code class="language-json title=&quot;Response Body&quot;">{
+  &quot;id&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+  &quot;start&quot;: &quot;YYYY-MM-DD HH:mm&quot;,
+  &quot;end&quot;: &quot;YYYY-MM-DD HH:mm&quot;,
+  &quot;calendar&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+  &quot;appointment&quot;: &quot;[0-9a-fA-F]{8} || ''&quot;,
+  &quot;title&quot;: &quot;string&quot;,
+}
+</code></pre>
+<h3 id="create-endpoint"><a class="header" href="#create-endpoint">Create Endpoint</a></h3>
+<p>Create an event.</p>
+<pre><code class="language-json title=&quot;Request Body&quot;">{
+  &quot;start&quot;: &quot;YYYY-MM-DD HH:mm&quot;,
+  &quot;end&quot;: &quot;YYYY-MM-DD HH:mm&quot;,
+  &quot;calendar&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+  &quot;appointment&quot;: &quot;[0-9a-fA-F]{8}&quot;, // Not required
+  &quot;title&quot;: &quot;string&quot;,
+}
+</code></pre>
+<pre><code class="language-json title=&quot;Response Body&quot;">{
+  &quot;id&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+  &quot;message&quot;: &quot;Event ${id} created&quot;
+}
+</code></pre>
+<h3 id="update-date-endpoint"><a class="header" href="#update-date-endpoint">Update Date Endpoint</a></h3>
+<p>Update the date of an event.</p>
+<pre><code class="language-json title=&quot;Request Body&quot;">{
+  &quot;start&quot;: &quot;YYYY-MM-DD HH:mm&quot;,
+  &quot;end&quot;: &quot;YYYY-MM-DD HH:mm&quot;,
+}
+</code></pre>
+<pre><code class="language-json title=&quot;Response Body&quot;">{
+  &quot;id&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+  &quot;message&quot;: &quot;Event ${id} updated&quot;
+}
+</code></pre>
+<h3 id="update-calendar-endpoint"><a class="header" href="#update-calendar-endpoint">Update Calendar Endpoint</a></h3>
+<p>Update the calendar of an event.</p>
+<pre><code class="language-json title=&quot;Request Body&quot;">{
+  &quot;calendar&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+}
+</code></pre>
+<pre><code class="language-json title=&quot;Response Body&quot;">{
+  &quot;id&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+  &quot;message&quot;: &quot;Event ${id} updated&quot;
+}
+</code></pre>
+<h3 id="delete"><a class="header" href="#delete">Delete</a></h3>
+<p>Delete an event.</p>
+<pre><code class="language-json title=&quot;Response Body&quot;">{
+  &quot;id&quot;: &quot;[0-9a-fA-F]{8}&quot;,
+  &quot;message&quot;: &quot;Event ${id} deleted&quot;
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="auth-1"><a class="header" href="#auth-1">Auth</a></h1>
+<h2 id="schema-6"><a class="header" href="#schema-6">Schema</a></h2>
+<pre class="mermaid">flowchart TB
+ AUTH{{/api/auth}} -- Login --&gt; MLIAUTH{GET} ---&gt; AUTH_LOGIN{{/login}}
+ AUTH -- Refresh Token --&gt; MROAUTH{GET} ---&gt; AUTH_REFRESH{{/refresh-token}}
+ AUTH -- Logout --&gt; MLOAUTH{GET} ---&gt; AUTH_LOGOUT{{/logout}}
+</pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="users-1"><a class="header" href="#users-1">Users</a></h1>
+<h2 id="schema-7"><a class="header" href="#schema-7">Schema</a></h2>
+<pre class="mermaid">flowchart TB
+ USRS{{/api/users}} -- Read All --&gt; MRAUSRS{GET} ---&gt; USRS_READALL{{/}}
+ USRS -- Read One --&gt; MROUSRS{GET} ---&gt; USRS_READONE{{/:id}}
+ USRS -- Connection --&gt; MLOUSRS{GET} ---&gt; USRS_LOGIN{{/connexion}}
+ USRS -- Practitioners --&gt; MPRUSRS{GET} ---&gt; USRS_PRAC{{/practitioners}}
+ USRS -- Create --&gt; MCUSRS{PST} --&gt; MWCUSRS[[Create]] --&gt; USRS_CREATE{{/add}}
+ USRS -- Update --&gt; MUUSRS{PUT} --&gt; MWUUSRS[[Update]] --&gt; USR_UPDATE{{/:id}}
+ USRS -- Disable --&gt; MDUSRS{DEL} ---&gt; USRS_DEL{{/:id}}
+ USRS -- Enable --&gt; MEUSRS{PUT} ---&gt; USRS_EN{{/:id/enable}}
+</pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="lx-tool"><a class="header" href="#lx-tool"><code>lx</code> Tool</a></h1>
+<p>Installateur et configurateur de Helix.</p>
+<p>!!! info &quot;Documentation&quot;</p>
+<pre><code>Pour voir la documentation technique complète, [cliquez ici](https://github.com/helix-medical/lx).
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="installation-4"><a class="header" href="#installation-4">Installation</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="usage-2"><a class="header" href="#usage-2">Usage</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="welcome-to-helix-documentation-1"><a class="header" href="#welcome-to-helix-documentation-1">Welcome to Helix Documentation</a></h1>
+<h2 id="what-is-helix-1"><a class="header" href="#what-is-helix-1">What is Helix?</a></h2>
+<p>Helix est un système de gestion de patients, à destination des cabinets médicaux ou paramédicaux.
+Dans Helix, vous pouvez gérer vos patients, leurs rendez-vous, leurs factures et votre comptabilité, leurs dossiers médicaux, etc.
+Aujourd'hui, Helix est tourné principalement vers les ostéopathes, mais il est possible de
+l'adapter à d'autres professions. Helix est un logiciel libre, développé par
+<a href="https://github.com/Xavier2p">Xavier2p</a>, et est gratuit et <em>open-source</em>. Il est disponible
+sur <a href="https://github.com/helix-medical/">GitHub</a> et toute contribution est bienvenue.</p>
+<p>Dans cette documentation, vous trouverez des informations sur l'installation et la
+configuration de Helix, ainsi que sur son utilisation.
+Il y a également une documentation plus technique, pour contribuer au développement de Helix.</p>
+<h2 id="project-layout-1"><a class="header" href="#project-layout-1">Project layout</a></h2>
+<pre><code class="language-text">.
+├── client      # Client-side code
+├── server      # Server-side code
+├── docs        # Documentation
+├── releases    # Releases
+├── lx-tool     # Utility
+└── website     # Website
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
